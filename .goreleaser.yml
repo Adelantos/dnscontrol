@@ -22,7 +22,7 @@ builds:
         goarch: "386"
     ldflags:
       - -linkmode=internal -s -w
-      - -X github.com/Adelantos/dnscontrol/v4/pkg/version.version={{ .Version }}
+      - -X github.com/adelantos/dnscontrol/v4/pkg/version.version={{ .Version }}
 before:
   hooks:
     - go fmt ./...
@@ -98,8 +98,8 @@ nfpms:
     - deb
 dockers:
   - image_templates:
-    - &amd_image "Adelantos/{{.ProjectName}}:{{ .Version }}-amd64"
-    - &amd_image_ghcr "ghcr.io/Adelantos/{{.ProjectName}}:{{ .Version }}-amd64"
+    - &amd_image "adelantos/{{.ProjectName}}:{{ .Version }}-amd64"
+    - &amd_image_ghcr "ghcr.io/adelantos/{{.ProjectName}}:{{ .Version }}-amd64"
     goos: linux
     goarch: amd64
     use: buildx
@@ -114,8 +114,8 @@ dockers:
     - "--label=org.opencontainers.image.version={{ .Version }}"
     - "--label=org.opencontainers.image.source={{ .GitURL }}"
   - image_templates:
-    - &arm_image "Adelantos/{{.ProjectName}}:{{ .Version }}-arm64"
-    - &arm_image_ghcr "ghcr.io/Adelantos/{{.ProjectName}}:{{ .Version }}-arm64"
+    - &arm_image "adelantos/{{.ProjectName}}:{{ .Version }}-arm64"
+    - &arm_image_ghcr "ghcr.io/adelantos/{{.ProjectName}}:{{ .Version }}-arm64"
     goos: linux
     goarch: arm64
     use: buildx
@@ -130,20 +130,20 @@ dockers:
     - "--label=org.opencontainers.image.version={{ .Version }}"
     - "--label=org.opencontainers.image.source={{ .GitURL }}"
 docker_manifests:
-  - name_template: "Adelantos/{{.ProjectName}}:{{ .Version }}"
+  - name_template: "adelantos/{{.ProjectName}}:{{ .Version }}"
     image_templates:
       - *amd_image
       - *arm_image
-  - name_template: "ghcr.io/Adelantos/{{.ProjectName}}:{{ .Version }}"
+  - name_template: "ghcr.io/adelantos/{{.ProjectName}}:{{ .Version }}"
     image_templates:
       - *amd_image_ghcr
       - *arm_image_ghcr
-  - name_template: "Adelantos/{{.ProjectName}}:latest"
+  - name_template: "adelantos/{{.ProjectName}}:latest"
     skip_push: auto
     image_templates:
       - *amd_image
       - *arm_image
-  - name_template: "ghcr.io/Adelantos/{{.ProjectName}}:latest"
+  - name_template: "ghcr.io/adelantos/{{.ProjectName}}:latest"
     skip_push: auto
     image_templates:
       - *amd_image_ghcr
@@ -176,10 +176,10 @@ release:
 
     ##### Using with [Docker](https://www.docker.com)
 
-    You can use the Docker image from [Docker hub](https://hub.docker.com/r/Adelantos/dnscontrol/) or [GitHub Container Registry](https://github.com/Adelantos/dnscontrol/pkgs/container/dnscontrol).
+    You can use the Docker image from [Docker hub](https://hub.docker.com/r/adelantos/dnscontrol/) or [GitHub Container Registry](https://github.com/adelantos/dnscontrol/pkgs/container/dnscontrol).
 
     ```shell
-    docker run --rm -it -v "$(pwd):/dns" ghcr.io/Adelantos/dnscontrol preview
+    docker run --rm -it -v "$(pwd):/dns" ghcr.io/adelantos/dnscontrol preview
     ```
 
     #### Anywhere else
@@ -189,7 +189,7 @@ release:
     Or, if you have Go installed, you can install the latest version of DNSControl with the following command:
 
     ```shell
-    go install github.com/Adelantos/dnscontrol/v4@main
+    go install github.com/adelantos/dnscontrol/v4@main
     ```
 
     ## Update
